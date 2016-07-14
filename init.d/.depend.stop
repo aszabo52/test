@@ -1,0 +1,13 @@
+TARGETS = tomcat8 apache2 atd exim4 urandom mysql sendsigs rsyslog umountnfs.sh nfs-common rpcbind hwclock.sh networking umountfs umountroot halt reboot
+mysql: exim4
+sendsigs: mysql exim4 atd apache2 tomcat8
+rsyslog: mysql exim4 atd sendsigs apache2
+umountnfs.sh: mysql sendsigs exim4 atd rsyslog apache2 tomcat8
+nfs-common: umountnfs.sh
+rpcbind: umountnfs.sh
+hwclock.sh: nfs-common mysql atd rsyslog
+networking: mysql exim4 apache2 umountnfs.sh rpcbind tomcat8
+umountfs: networking mysql hwclock.sh exim4 atd urandom apache2 umountnfs.sh rpcbind tomcat8
+umountroot: umountfs
+halt: umountroot
+reboot: umountroot

@@ -1,4 +1,4 @@
-TARGETS = rsyslog motd killprocs tomcat8 apache2 mysql atd ssh rsync cron dbus acpid exim4 bootlogs single rmnologin rc.local
+TARGETS = tomcat8 rsyslog motd killprocs apache2 mysql atd ssh rsync cron dbus acpid exim4 bootlogs single rmnologin rc.local
 INTERACTIVE = apache2
 apache2: rsyslog
 mysql: rsyslog
@@ -10,5 +10,5 @@ dbus: rsyslog
 acpid: rsyslog
 exim4: rsyslog mysql
 single: killprocs motd bootlogs
-rmnologin: mysql rsyslog exim4 atd apache2 motd bootlogs ssh rsync cron dbus acpid tomcat8
-rc.local: mysql rsyslog exim4 atd apache2 motd bootlogs ssh rsync cron dbus acpid tomcat8
+rmnologin: tomcat8 mysql rsyslog exim4 atd apache2 motd bootlogs ssh rsync cron dbus acpid
+rc.local: tomcat8 mysql rsyslog exim4 atd apache2 motd bootlogs ssh rsync cron dbus acpid
